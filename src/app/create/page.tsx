@@ -26,6 +26,7 @@ export default function CreateBlogPage() {
 
     const form = useForm<BlogPostForm>({
         resolver: zodResolver(blogPostSchema),
+        mode: "onChange",
         defaultValues: {
             title: "",
             author: "",

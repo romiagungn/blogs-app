@@ -28,11 +28,8 @@ async function BlogList() {
     }
 
     return posts.map((post) => (
-        <Card
-            key={post.id}
-            className="flex flex-col justify-between h-full group hover:shadow-xl transition-shadow duration-300"
-        >
-            <Link href={`/blog/${post.id}`} className="block">
+        <Link key={post.id} href={`/blog/${post.id}`} className="block">
+            <Card className="flex flex-col justify-between h-full group hover:shadow-xl transition-shadow duration-300">
                 <CardHeader>
                     <CardTitle className="group-hover:text-primary">{post.title}</CardTitle>
                     <CardDescription>
@@ -42,11 +39,11 @@ async function BlogList() {
                 <CardContent>
                     <p className="text-muted-foreground line-clamp-3">{post.summary}</p>
                 </CardContent>
-            </Link>
-            <CardFooter className="flex justify-end pt-4">
-                <LikeButton postId={post.id} initialLiked={post.isLiked} />
-            </CardFooter>
-        </Card>
+                <CardFooter className="flex justify-end pt-4">
+                    <LikeButton postId={post.id} initialLiked={post.isLiked} />
+                </CardFooter>
+            </Card>
+        </Link>
     ));
 }
 

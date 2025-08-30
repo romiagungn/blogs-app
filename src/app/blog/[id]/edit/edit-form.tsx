@@ -32,6 +32,7 @@ export function EditForm({ initialData }: EditFormProps) {
 
     const form = useForm<BlogPostForm>({
         resolver: zodResolver(blogPostSchema),
+        mode: "onChange",
         defaultValues: initialData,
     });
 
