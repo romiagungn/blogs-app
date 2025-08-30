@@ -6,6 +6,7 @@ import { PlusCircle } from "lucide-react";
 import { getAllPosts } from "@/lib/api";
 import { LikeButton } from "@/components/blog/like-button";
 import { CardSkeleton } from "@/components/blog/card-skeleton";
+import { DeleteButton } from "@/components/blog/delete-button";
 
 export const dynamic = "force-dynamic";
 
@@ -28,22 +29,23 @@ async function BlogList() {
     }
 
     return posts.map((post) => (
-        <Link key={post.id} href={`/blog/${post.id}`} className="block">
-            <Card className="flex flex-col justify-between h-full group hover:shadow-xl transition-shadow duration-300">
+        <Card key={post.id} className="flex flex-col h-full group hover:shadow-xl transition-shadow duration-300">
+            <Link href={`/blog/${post.id}`} className="flex flex-col flex-grow">
                 <CardHeader>
                     <CardTitle className="group-hover:text-primary">{post.title}</CardTitle>
                     <CardDescription>
                         By {post.author} in {post.category}
                     </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow">
                     <p className="text-muted-foreground line-clamp-3">{post.summary}</p>
                 </CardContent>
-                <CardFooter className="flex justify-end pt-4">
-                    <LikeButton postId={post.id} initialLiked={post.isLiked} />
-                </CardFooter>
-            </Card>
-        </Link>
+            </Link>
+            <CardFooter className="relative z-10 flex justify-end items-center pt-4">
+                <LikeButton postId={post.id} initialLiked={post.isLiked} />
+                <DeleteButton postId={post.id} />
+            </CardFooter>
+        </Card>
     ));
 }
 
