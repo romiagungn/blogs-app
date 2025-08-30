@@ -7,10 +7,10 @@ import { getAllPosts } from "@/lib/api";
 import { LikeButton } from "@/components/blog/like-button";
 import { CardSkeleton } from "@/components/blog/card-skeleton";
 
+export const dynamic = "force-dynamic";
+
 async function BlogList() {
     const posts = await getAllPosts();
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if (posts.length === 0) {
         return (
